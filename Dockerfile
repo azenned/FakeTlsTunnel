@@ -1,4 +1,4 @@
-FROM alpine:3.18.2 as builder
+FROM alpine:3.18.12 as builder
 
 RUN apk add nim
 RUN apk add nimble
@@ -15,7 +15,7 @@ COPY src src
 COPY .gitignore .gitignore
 RUN nim build
 
-FROM alpine:3.18.2 as runner
+FROM alpine:3.18.12 as runner
 
 RUN apk add iptables
 
