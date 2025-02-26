@@ -2,8 +2,11 @@
 import std/[random,os,osproc,asyncdispatch,exitprocs]
 from globals import nil
 import connection,tunnel,server,print
+from std/times import getTime, toUnix, nanosecond
 
-randomize()
+let now = getTime()
+randomize(now.toUnix * 1_000_000_000 + now.nanosecond)
+
 globals.init()
 
 #full reset iptables at exit (if the user allowed )
