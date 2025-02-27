@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  faketlstunnel:
+    build:
+      context: .  # Le chemin vers votre Dockerfile
+    container_name: faketlstunnel
+    command: ./FTT --server --lport:10443 --toip:91.121.91.196 --toport:10200 --sni:orange.tn --password:123ab
+    ports:
+      - "10443:10443"
+      - "10200:10200"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Montez le répertoire local pour un développement en direct (optionnel)
+      - .:/app
+    restart: no
+    devices:
+      - "/dev/urandom:/dev/urandom"
+    security_opt:
+      - seccomp=unconfined
