@@ -5,8 +5,9 @@ services:
     build:
       context: .  # Le chemin vers votre Dockerfile
     container_name: faketlstunnel
-    command: ./FTT --server --lport:10443 --toip:91.121.91.196 --toport:10200 --sni:orange.tn --password:123ab
+    command: ./FTT --server --lport:443 --toip:127.0.0.1 --toport:443 --sni:orange.tn --password:123ab
     ports:
+      - "443:443"
       - "10443:10443"
       - "10200:10200"
     environment:
